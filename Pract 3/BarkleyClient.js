@@ -3,7 +3,7 @@ const randomIntFromInterval = require("./Library/RandomNumber");
 const TIME_ZONE_HOUR = 5,
   TIME_ZONE_MINUTE = 30;
 
-const allTime = [];
+let allTime = [];
 
 class BarkleyClient {
   constructor() {
@@ -13,16 +13,18 @@ class BarkleyClient {
       1999,
       11,
       30,
-      hour + TIME_ZONE_HOUR,
-      minute + TIME_ZONE_MINUTE
+      hour ,
+      minute 
     );
     // new Date();
-    console.log(this.time);
+    console.log('client time ', this.time);
   }
 
   getTime() {
     return this.time;
   }
+
+
 }
 
 const clients = [new BarkleyClient(), new BarkleyClient(), new BarkleyClient()];
@@ -34,9 +36,10 @@ for (; index < clients.length; index++) {
 }
 allTime.push(server.getTime());
 const averageTime = server.getAverageTime(allTime);
-// console.log("avarageTime ", averageTime);
-// for (index = 0; index < allTime.length; index++) {
-//     let timeDifference = server.difference(averageTime, allTime[index])
-//     console.log('timeDifference ', index, timeDifference);
+console.log("avarageTime ", averageTime);
 
-// }
+allTime = server.addTime(allTime, averageTime);
+
+console.log(allTime);
+
+
