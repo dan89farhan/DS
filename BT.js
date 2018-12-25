@@ -20,6 +20,7 @@ class BinaryTree {
   }
 
   addNode(node, newNode) {
+    // 
     if (newNode.data < node.data) {
       if (node.left == null) node.left = newNode;
       else this.addNode(node.left, newNode);
